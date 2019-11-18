@@ -343,4 +343,48 @@ class AdminController extends Controller {
         return back();
     }
 
+    public function editPolitician(Request $request, $id) {
+        $this->validate($request, [
+            'first_name' => ['required', 'string'],
+            'last_name' => ['required', 'string'],
+            'dob' => ['required', 'string'],
+            'occupation' => ['required', 'string'],
+            'biography' => ['required', 'string'],
+            'children' => ['required', 'numeric'],
+            'spouse' => ['required', 'string'],
+            'education_history' => ['required', 'string'],
+            'education' => ['required', 'string'],
+            'career' => ['required', 'string'],
+            'website' => ['required', 'url'],
+            'political_history' => ['required', 'string'],
+        ]);
+
+        $politician = Politician::find($id);
+        $politician['slug'] = str_slug($request->first_name.' '. $request->last_name,'-');
+        $name = $request->first_name . $request->last_name;
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+
+            $extension = $file->getClientOriginalExtension();
+            $nameslug = $this->slug($name, $extension);
+            $file->move(public_path('/politician/photos'), $nameslug);
+            $politician['file'] = 'politician/photos/' . $nameslug;
+        }
+
+        $politician->first_name = $request->input('first_name');
+        $politician->last_name = $request->input('last_name');
+        $politician->dob = $request->input('dob');
+        $politician->occupation = $request->input('occupation');
+        $politician->biography = $request->input('biography');
+        $politician->children = $request->input('children');
+        $politician->spouse = $request->input('spouse');
+        $politician->education_history = $request->input('education_history');
+        $politician->education = $request->input('education');
+        $politician->career = $request->input('career');
+        $politician->website = $request->input('website');
+        $politician->political_history = $request->input('political_history');
+        $politician->save();
+        return back()->with('success', 'Politician updated successfully');
+    }
+
 }

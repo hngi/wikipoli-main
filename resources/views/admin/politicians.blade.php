@@ -189,8 +189,8 @@
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 
-                                        <button class="dropdown-item text-success" data-toggle="modal" data-target="#myModal"><i class="fas fa-binoculars"></i> View</button>
-                                        <button class="dropdown-item text-warning"  data-toggle="modal" data-target="#edit{{$politician->id}}" ><i class="fas fa-edit"></i> Edit</button>
+                                        <button class="dropdown-item text-success" data-toggle="modal" data-target="#view"><i class="fas fa-binoculars"></i> View</button>
+                                        <button class="dropdown-item text-warning"  data-toggle="modal" data-target="#edit" ><i class="fas fa-edit"></i> Edit</button>
 
                                         <form  class="deleted"   role="form" method="POST"
                                                action="{{url('delete-politician',['id'=>$politician->id])}}" >
@@ -198,14 +198,129 @@
                                             <button  class="dropdown-item text-danger noHover" type="submit"> <i class="fas fa-trash-alt"></i> Delete</button>
                                         </form>
 
-
-
                                     </div>
                                 </div>
                             </td>
                         </tr>
 
+                        <!-- Edit Modal -->
+                        <div class="modal" id="edit">
+                            <div class="modal-dialog modal-lg">
+                                <form class="" method="Post" action="{{url('edit-politician', $politician->id)}}" enctype="multipart/form-data">
+                                    @csrf  
+                                    @method('PUT')
+                                    <div class="modal-content">
 
+                                        <!-- Modal Header -->
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Edit {{$politician->first_name}} {{$politician->last_name}}</h4>
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+
+                                        <!-- Modal body -->
+                                        <div class="modal-body">
+
+                                            <div class="form-group row">
+
+                                                <div class="form-group col-md-4 " >
+                                                    <label for="first-name">First Name</label>
+                                                    <input type="text" class="form-control border border-primary" name="first_name" value="{{$politician->first_name}}">
+                                                </div>
+
+                                                <div class="form-group col-md-4">
+                                                    <label for="last-name">Last Name</label>
+                                                    <input type="text" class="form-control border border-primary " name="last_name" value="{{$politician->last_name}}">
+                                                </div>
+
+                                                <div class="form-group col-md-4">
+                                                    <label for="dob">Date of Birth</label>
+                                                    <input type="date" class="form-control border-primary" name="dob" value="{{$politician->dob}}">
+
+                                                </div>
+
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <div class="col-md-4">
+                                                    <label for="biography">Biography</label>
+                                                    <textarea class="form-control border border-primary" name="biography" >{{$politician->biography}}</textarea>
+                                                </div>
+
+
+
+
+                                                <div class="col-md-4 " >
+                                                    <label for="Occupation">Occupation</label>
+                                                    <input type="text" class="form-control border border-primary" name="occupation" value="{{$politician->occupation}}">
+                                                </div>
+
+                                                <div class="col-md-4">
+                                                    <label for="children">No. Of Children</label>
+                                                    <input type="text" class="form-control border border-primary " name="children" value="{{$politician->children}}">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-md-4">
+                                                    <label for="spouse">Spouse Name</label>
+                                                    <input type="text" class="form-control border border-primary " name="spouse" value="{{$politician->spouse}}">
+                                                </div>
+
+                                                <div class="col-md-4">
+                                                    <label for="education">Education History</label>
+                                                    <textarea class="form-control border border-primary" name="education_history">{{$politician->education_history}}</textarea>
+                                                </div>
+
+
+                                                <div class="col-md-4 " >
+                                                    <label for="education">Education</label>
+                                                    <input placeholder="separate with comma" type="text" class="form-control border border-right-0 border-primary " name="education" value="{{$politician->education}}">
+
+                                                </div>
+
+
+
+
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-md-4">
+                                                    <label for="career">Career History</label>
+                                                    <textarea class="form-control border border-primary " name="career">{{$politician->career}}</textarea>
+                                                </div>
+
+
+                                                <div class="col-md-4">
+                                                    <label for="website">website</label>
+                                                    <input type="text" class="form-control border border-primary" placeholder="eg https:// or http" name="website" value="{{$politician->website}}">
+                                                </div>
+
+                                                <div class="col-md-4">
+                                                    <label for="political">Political History</label>
+                                                    <textarea class="form-control border border-primary " name="political_history">{{$politician->political_history}}</textarea>
+                                                </div>
+
+                                            </div>
+
+
+                                            <div class="form-group col-md-12">
+                                                <label>Politician Photo  (required)</label>
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input border border-primary" name="file" id="customFile">
+                                                    <label class="custom-file-label" for="customFile">Choose file</label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <!-- Modal footer -->
+                                        <div class="modal-footer justify-content-between">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary">Edit</button>
+                                        </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- //Edit Modal -->
+                        
                         <!-- The Modal -->
                     <div class="modal" id="edit{{$politician->id}}">
                         <div class="modal-dialog modal-lg">
