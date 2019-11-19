@@ -69,10 +69,28 @@ class UserController extends Controller {
         $user->linkedin_url = $request->linkedin_url;
         $user->save();
         //user
-        User::whereId(Auth::user()->id)->update(['email' => $request->email]);
+        User::whereId(Auth::user()->id)->update(['full_name' => $request->first_name . ' ' . $request->last_name,'email' => $request->email]);
         session()->flash('message.alert', 'success');
         session()->flash('message.content', "Profile Updated");
         return back();
+        /*$id = Auth::user()->id;
+        $user = User::find($id);
+        $user->full_name = $request->first_name . ' ' . $request->last_name;
+        $user_profile = UserProfile::where('user_id', $id)->get();
+        $user_profile->first_name = $request->first_name;
+        $user_profile->last_name = $request->last_name;
+        $user_profile->dob = $request->dob;
+        $user_profile->gender = $request->gender;
+        $user_profile->state = $request->state;
+        $user_profile->facebook_url = $request->facebook_url;
+        $user_profile->phone = $request->phone;
+        $user_profile->address = $request->address;
+        $user_profile->twitter_url = $request->twitter_url;
+        $user_profile->linkedin_url = $request->linkedin_url;
+        return "$user->full_name";
+        $user->save();
+        $user_profile->save();
+        return back()->with('success', 'Profile Updated');*/
     }
 
     public function updateAvatar(Request $request) {
