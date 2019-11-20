@@ -451,7 +451,7 @@
 													<a class="nav-link active" data-toggle="tab" href="#self_post">My Post(s)</a>
 											</li>
 											<li class="nav-item">
-												<a class="nav-link" href="#general_post" data-toggle="tab">Liked Posts</a>
+												<a class="nav-link" href="#general_post" data-toggle="tab">Liked Post(s)</a>
 											</li>
 											<!-- <li class="nav-item">
 												<a class="nav-link" href="#">Followers List</a>
@@ -473,7 +473,7 @@
                                                 ?>
                                                 @foreach($posts as $post)
 													<div class="post_cont">
-                                                        <img src="/uploads/avatars/{{ Auth::user()->avatar }}" class=" justify-content-center" alt="" style="width:100px; height:100px; border-radius:50%; padding:11px; margin-left:auto; margin-right:auto;">
+                                                        <img src="{{$post->file}}" class=" justify-content-center" alt="" style="width:100px; height:100px; border-radius:50%; padding:11px; margin-left:auto; margin-right:auto;">
 
 															<div class="post_det"> 
 																	<h3><a href="{{url('posts/'.$post->slug)}}">{{$post->title}}</a> <span> {{date('F d, Y', strtotime($post->created_at))}}</span></h3>
@@ -483,6 +483,11 @@
 															
 													</div>
                                                 @endforeach
+
+                                                @else
+                                                    <br>
+                                                    <div><h3>You have no published post</h3></div>
+                                                @endif
 
                                                 </div>
                                     
@@ -494,7 +499,7 @@
                                                                         @if($all_post->id==$liked_post->post_id)
 
                                                                             <div class="post_cont">
-                                                                                <img src="/uploads/avatars/{{ Auth::user()->avatar }}" class=" justify-content-center" alt="" style="width:100px; height:100px; border-radius:50%; padding:11px; margin-left:auto; margin-right:auto;">
+                                                                                <img src="{{$all_post->file}}" class=" justify-content-center" alt="" style="width:100px; height:100px; border-radius:50%; padding:11px; margin-left:auto; margin-right:auto;">
 
                                                                                     <div class="post_det"> 
                                                                                             <h3><a href="{{url('posts/'.$all_post->slug)}}">{{$all_post->title}}</a> <span> {{date('F d, Y', strtotime($all_post->created_at))}}</span></h3>

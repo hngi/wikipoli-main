@@ -27,7 +27,7 @@ class SocialController extends Controller {
                 'email' => $userSocial->email,
                 'full_name' => $userSocial->name,
                 'status_id' => 1,
-                'username' => str_singular($userSocial->email),
+                'username' => str_singular($userSocial->name),
                 'password' => Hash::make($userSocial->email),
                 'email_verified_at' => Carbon::now()
             ]);
