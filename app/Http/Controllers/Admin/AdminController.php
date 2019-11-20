@@ -173,7 +173,7 @@ class AdminController extends Controller {
         } elseif ($filter == 'soft') {
             $data['users'] = User::onlyTrashed()->with('user_statuses')->orderBy('created_at', 'desc')->paginate(15);
         } else {
-            $data['users'] = User::with('user_statuses')->orderBy('created_at', 'desc')->paginate(15);
+            $data['users'] = User::withTrashed()->with('user_statuses')->orderBy('created_at', 'desc')->paginate(15);
         }
 
         return view('admin.user.index', $data);
@@ -196,7 +196,8 @@ class AdminController extends Controller {
     }
 
     public function unblock($id) {
-        $user = User::find($id);
+        $user = User::withTrashed()->where('id',$id)->first();
+        $user->restore();
         $user->update([
             'status_id' => 1
         ]);
@@ -211,6 +212,7 @@ class AdminController extends Controller {
         $user->update([
             'status_id' => 2
         ]);
+        $user->delete();
 
         session()->flash('message.alert', 'success');
         session()->flash('message.content', "User Blocked");
@@ -227,11 +229,11 @@ class AdminController extends Controller {
     }
 
     public function deletePermanentlyUser($id) {
-        $user = User::find($id);
+        $user = User::withTrashed()->where('id',$id)->first();
         $user->forceDelete();
 
         session()->flash('message.alert', 'success');
-        session()->flash('message.content', "User Hard Deleted");
+        session()->flash('message.content', "User Deleted");
         return back();
     }
 

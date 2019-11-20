@@ -94,15 +94,15 @@
                                             <button class="dropdown-item text-success" data-toggle="modal" data-target="#myModal"><i class="fas fa-binoculars"></i> View</button>
                                             <button class="dropdown-item text-warning"  data-toggle="modal" data-target="#edit{{$user->id}}" ><i class="fas fa-edit"></i> Edit</button>
                                            --}}
-                                            <form  class="deleted"   role="form" method="POST"
+                                            <!-- <form  class="deleted"   role="form" method="POST"
                                                    action="{{url('delete-temporary-user',['id'=>$user->id])}}" >
                                                 @csrf
                                                 <button  class="dropdown-item text-danger noHover" type="submit"> <i class="fas fa-trash-alt"></i> Delete Temporary</button>
-                                            </form>
+                                            </form> -->
                                             <form  class="deleted"   role="form" method="POST"
                                                    action="{{url('delete-permanently-user',['id'=>$user->id])}}" >
                                                 @csrf
-                                                <button  class="dropdown-item text-success noHover" type="submit"> <i class="fas fa-trash-alt"></i> Delete Permanently</button>
+                                                <button  class="dropdown-item text-success noHover" type="submit"> <i class="fas fa-trash-alt"></i> Delete</button>
                                             </form>
                                             @if($user->user_statuses->status == 'blocked')
                                              <form  class="deleted"   role="form" method="POST"
