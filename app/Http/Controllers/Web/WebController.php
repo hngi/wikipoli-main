@@ -13,7 +13,7 @@ class WebController extends Controller
     }
     
      public function home() {
-      $data['posts'] = Post::with('user')->whereStatus(1)->with('likeunlike')->orderBy('created_at', 'DESC')->take(8)->get(); 
+      $data['posts'] = Post::with('user')->whereStatus(1)->with('likeunlike')->orderBy('created_at', 'DESC')->take(9)->get(); 
       return view('web.index', $data);
       
     }
