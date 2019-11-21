@@ -471,18 +471,19 @@
                                                         return $text;
                                                     }
                                                 ?>
-                                                @foreach($posts as $post)
-													<div class="post_cont">
-                                                        <img src="{{$post->file}}" class=" justify-content-center" alt="" style="width:100px; height:100px; border-radius:50%; padding:11px; margin-left:auto; margin-right:auto;">
+                                                @if(count($posts) > 0)
+                                                    @foreach($posts as $post)
+                                                        <div class="post_cont">
+                                                            <img src="{{$post->file}}" class=" justify-content-center" alt="" style="width:100px; height:100px; border-radius:50%; padding:11px; margin-left:auto; margin-right:auto;">
 
-															<div class="post_det"> 
-																	<h3><a href="{{url('posts/'.$post->slug)}}">{{$post->title}}</a> <span> {{date('F d, Y', strtotime($post->created_at))}}</span></h3>
+                                                                <div class="post_det"> 
+                                                                        <h3><a href="{{url('posts/'.$post->slug)}}">{{$post->title}}</a> <span> {{date('F d, Y', strtotime($post->created_at))}}</span></h3>
 
-																	<p>{!! textShorten($post->body) !!}<br><a href="{{url('posts/'.$post->slug)}}">Read More</a></p>
-															</div>
-															
-													</div>
-                                                @endforeach
+                                                                        <p>{!! textShorten($post->body) !!}<br><a href="{{url('posts/'.$post->slug)}}">Read More</a></p>
+                                                                </div>
+                                                                
+                                                        </div>
+                                                    @endforeach
 
                                                 @else
                                                     <br>
