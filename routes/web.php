@@ -112,4 +112,5 @@ Route::group(['middleware' => ['role:SuperAdmin|Admin']], function () {
     //politicians
     Route::get('/admin/politicians', 'Admin\AdminController@politicianGet')->name('admin.politicians');
     Route::post('add-politician', 'Admin\AdminController@addPolitician');
+    Route::put('edit-politician/{id}', 'Admin\AdminController@editPolitician')->name('edit.politicians');
 });
