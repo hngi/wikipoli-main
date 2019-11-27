@@ -69,18 +69,19 @@
         object-fit: cover;
     }
 
-    .cardi {
+    /* .cardi {
         box-shadow: 0.8px 0 0 gainsboro ;
-    }
+    } */
 
-	.search {
-		background: #1257AE;
-		color: #ffffff;
-		width: 6.2em;
+
+	p .words, .about {
+		text-decoration: none;
+		color: #1257AE;
 	}
 
-	.lead a {
-		text-decoration: none;
+	.btn {
+		background: #1257AE;
+		outline: none;
 	}
 
 	.lock {
@@ -103,9 +104,6 @@
 		background: #1257AE;
 	}
 
-	.about {
-		margin-top: 5em;
-	}
 
 	.form-control {
 		width: 20em;
@@ -258,67 +256,51 @@
 @section('content')
 
 <div class="container">
-		<div class="about">
-			<h4 class="display-4 text-center text-primary">About Us</h4>
-		</div>
+		<h5 class="h4 text-center about">About Us</h5>
         
 
         <div class="pb-3 mt-4">
-            <p class="lead text-dark">
-					Wikipoli was founded by a team of interns during the <a href="https://hng.tech" class="words">HNG Internship</a> program (HNG 6.0).
-					It is a free web and mobile responsive application where registered users can air out with no
-					 restrictions their thoughts on politics and as well write about a politician in their area or state.
+            <p class="text-dark">
+					Wikipoli is a free web  application where registered users air out with no
+					 restrictions, their thoughts on politics as well as politicians in their area or state.
 					<br>
-					WikiPoli is dynamic, it is open to a large contributor base also there are not qualification required to write articles or posts about a politician.					
+					WikiPoli is dynamic, it is open to a large contributor base also there are not qualifications required to write articles or posts about a politician.					
             </p>
         </div>
 
         <hr>
 
         <div class="row pb-4 mt-5 justify-content-center">
-            <div class="col-sm-12 col-md-4 col-lg-4 mt-4 cardi">
-				<div class="awe"></div><h4 class="h4 ml-4 pb-3"> Our Awesome Service</h4>
+            <div class="col-sm-12 col-md-6 mt-4 cardi">
+				<div class="awe"></div><h5 class="h4 ml-4 pb-3"> Our Awesome Service</h5>
                 <img src="https://res.cloudinary.com/gozzycloud/image/upload/v1573029068/wikipoli/images_roc3xu.jpg" class="img-fluid">
-                <p class="lead mt-4">We provide a global platform where you can publicize politicians in your zone anywhere you are in the world.
-						<a href="aboutus.html" class="words">Contact us</a> to feature your events on our platform.</p>
+                <p class=" mt-4">We provide a global platform where you can publicize politicians in your zone anywhere you are in the world.
+						<a href="{{ url('/contact-us') }}" class="words">Contact us</a> to feature your events on our platform.</p>
             </div>
             
-            <div class="col-sm-12 col-md-4 col-lg-4 mt-4 cardi">
-					<div class="awe"></div><h4 class="h4 ml-4 pb-3">Who We Are</h4>
+            <div class="col-sm-12 col-md-6 mt-4 cardi">
+					<div class="awe"></div><h5 class="h4 ml-4 pb-3">Who We Are</h5>
                 <img src="https://res.cloudinary.com/gozzycloud/image/upload/v1573029090/wikipoli/politicians-participating-political-debate-concept-260nw-1164676552_tgetsk.JPEG" class="img-fluid">
-                <p class="lead mt-4">
-						WikiPoli is that for us, we are driven by our desire to proffer solutions. 
+                <p class=" mt-4">
+						WikiPoli is here for us. We are driven by our desire to proffer solutions. 
 						We are bringing politicians and updates about the political space right in front of you.
 				</p>
-            </div>
-            <div class="col-sm-12 col-md-4 col-lg-4 mt-4 cardi">
-					<div class="awe"></div><h4 class="h4 ml-4 pb-3">Events</h4>
-                <img src="https://res.cloudinary.com/gozzycloud/image/upload/v1573026157/wikipoli/2996780_1_rt1w1o.svg" class="img-fluid">
-                <p class="lead mt-4">Life as a Politician.  Public and Family expectations.
-						December 13th, 2019.
-						KFA Events, Lekki Phase 1, Lagos.
-						<br>
-						<br>
-						Why I'd be contesting for President in 2023- Donald Dork.
-						January 3rd, 2020.
-						Landmark Events, Lekki, Lagos.
-						</p>
             </div>
 		</div>
 
         
-        <h4 class="text-center h2 mt-5 lock">How It Works</h4>
+        <h5 class="text-center h2 mt-5 lock">How It Works</h5>
 
         <div class="mt-5">
-            <p class="lead text-dark">
+            <p class=" text-dark">
 					In order to enjoy all the juicy features like creating a post, commenting on a post to using your favourite emoticon,
 					First, <a href="{{ url('/register') }}" class="words">Sign Up</a> as a User on WikiPoli, you could sign up using your Google account or Facebook account and if you don't have one you could just input in your data.
 					
-					Now, <a href="{{ url('/login') }}" class="words">Log In</a> in order to view and interact with recent posts as well as creating posts.
+					Now, <a href="{{ url('/login') }}" class="words">Log In</a> in order to view and interact with recent posts as well as create posts.
 					Update your profile, write a catchy bio for yourself and enjoy the WikiPoli experience.					
             </p>
             <div class="d-flex justify-content-center mt-5">
-                <a class="btn btn-primary btn-lg" href="{{ url('/login') }}" role="button">Get Started</a>
+                <a class="btn btn-primary btn-md" href="{{ url('/login') }}" role="button">Get Started</a>
             </div>
         </div>
 			</div>
